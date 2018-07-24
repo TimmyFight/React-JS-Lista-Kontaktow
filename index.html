@@ -1,8 +1,111 @@
-saddsasasassasasss
-dasd
-<datagrid>sadsad
-    sadsad
-</datagrid>
-<p>
-    sdsdd
-</p>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>React JS - Lista kontaktów</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+</head>
+
+<body>
+    
+    <div id="app"></div>
+    
+    <style>
+        .main{
+           margin-top: 70px; 
+        }
+    </style>
+
+    <script type="text/babel">
+
+    class App extends React.Component {
+    render() {
+        return(
+        <div>
+            <AppHeader />
+            <main className = "ui main text container">
+                <ContactList />
+            </main>
+        </div>
+        );
+    }
+    }
+
+class AppHeader extends React.Component {
+    render() {
+    return(
+        <header className="ui fixed menu">
+        <nav className="ui container">
+            <a href="#" className="header item">
+      Lista kontaktów
+    </a>
+            <div className="header item">
+                <button className="ui button">Dodaj</button>
+            </div>
+        </nav>
+    </header>
+    );
+}
+}
+
+class ContactList extends React.Component { 
+    render() {
+    return (
+    <ul className = "ui relaxed divided list selection">
+         <ContactItem login = "typeofweb1"
+         name = "Maciek"
+         departament = "FrontEnd Developer"
+         />
+        
+        <ContactItem login = "typeofweb2"
+         name = "Kinga"
+         departament = "HR"
+         />
+        
+        <ContactItem login = "typeofweb3"
+         name = "Marlena"
+         departament = "Graphic"
+         />
+    </ul>
+        );
+}
+}
+
+class Avatar extends React.Component {
+    render() {
+    const { login } = this.props
+    const imgUrl = `https://api.adorable.io/avatars/55/${login}.png`;
+    
+    return (
+        <img src={imgUrl} className="ui mini rounded image" />
+    );
+    }
+}
+
+class ContactItem extends React.Component {
+    render() {
+    const { login, name, departament} = this.props
+    return (
+    <li className="item">
+    <Avatar login={login} />
+      <div className="content">
+        <h4 className="header">{name}</h4>
+        <div className="description">{departament}</div>
+      </div>
+    </li>
+    );
+    }
+}
+
+ReactDOM.render(
+    <App />,
+    document.getElementById("app")
+);
+</script>
+</body>
+
+</html>
